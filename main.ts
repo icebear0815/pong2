@@ -21,4 +21,9 @@ basic.pause(500)
 basic.forever(function () {
     ball.change(LedSpriteProperty.X, directionX)
     ball.change(LedSpriteProperty.Y, directionY)
+    if (ball.isTouching(paddleA) || ball.isTouching(paddleB)) {
+        directionY = -1
+        directionX = randint(-1, 1)
+    }
+    basic.pause(500)
 })
