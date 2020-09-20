@@ -24,6 +24,21 @@ basic.forever(function () {
     if (ball.isTouching(paddleA) || ball.isTouching(paddleB)) {
         directionY = -1
         directionX = randint(-1, 1)
+    } else {
+        if (ball.get(LedSpriteProperty.Y) < 1) {
+            directionY = 1
+            directionX = randint(-1, 1)
+        } else if (ball.get(LedSpriteProperty.Y) >= 4) {
+            ball.set(LedSpriteProperty.Blink, 1)
+            basic.pause(2000)
+            game.gameOver()
+        } else {
+            if (ball.get(LedSpriteProperty.X) <= 0) {
+                directionX = 1
+            } else if (ball.get(LedSpriteProperty.X) >= 4) {
+                directionX = -1
+            }
+        }
     }
     basic.pause(500)
 })
